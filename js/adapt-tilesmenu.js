@@ -1,7 +1,8 @@
 define([
     'core/js/adapt',
-    'core/js/views/menuView'
-], function(Adapt, MenuView) {
+    'core/js/views/menuView',
+    'core/js/views/menuItemView'
+], function(Adapt, MenuView, MenuItemView) {
 
     var BoxMenuView = MenuView.extend({
 
@@ -59,12 +60,17 @@ define([
             // Checks if you are on Main Menu or Sub Menu
             if ($('.navigation-back-button').hasClass('display-none')) {
                 //Do Nothing on Main Menu
+                //BELOW PULLS TITLE
+                var navtitle2 = $( '.menu-title-inner' ).text();
+                Adapt.offlineStorage.set('mycourseTitle', navtitle2);
+                var courseholder = Adapt.offlineStorage.get("mycourseTitle");
             } else {
                 $('.tilesmenu-menu .menu-container-inner .menu-header .menu-header-inner .menu-title').addClass('submenu-title');
                 $('.tilesmenu-menu .menu-container-inner .menu-header .menu-header-inner .menu-body').addClass('submenu-body');
                 //BELOW PULLS TITLE
-                var navtitle2 = $( ".menu-title-inner" ).text();
-                $( ".modulehead" ).html( navtitle2 );
+                var navtitle2 = $( '.menu-title-inner' ).text();
+                Adapt.offlineStorage.set('mycourseTitle', navtitle2);
+                var courseholder = Adapt.offlineStorage.get("mycourseTitle");
             }
 
             // Triggers Page 1 when Accessibility button is pressed
